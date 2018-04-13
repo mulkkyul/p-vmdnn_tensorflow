@@ -269,3 +269,9 @@ After the computation is completed, the program will save and plot the results. 
 * Jinhyung Kim, from Korea Advanced Institute of Science and Technology (KAIST), Republic of Korea
 
 
+
+
+## License
+
+This project is licensed under the GPL License.
+
