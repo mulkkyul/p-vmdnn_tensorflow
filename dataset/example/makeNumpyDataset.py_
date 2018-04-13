@@ -1,0 +1,70 @@
+import numpy as np
+import matplotlib.pyplot as plt
+import time
+import os
+
+#Names
+resolution1 = '48'
+resolution2 = '64'
+trialname = '_2'
+fn_db = './icubOnScreen'+resolution1+resolution2+trialname+'.npz'
+
+#load data list
+dlist = np.genfromtxt('./trialList.txt',delimiter='\n')
+dlist = np.int32(dlist)
+print dlist.shape
+num_data = dlist.shape[0]
+#num_data = 1
+
+#dim
+vrow = 48
+vcol = 64
+
+motor = 2
+motor_sm = 10
+motor_dim = motor*motor_sm
+
+#length
+lth = 80
+
+visions = np.array([])
+idx_data = np.zeros([num_data],np.int32) #index data
+
+for i in xrange(num_data):
+    seq_idx = dlist[i]
+
+    print 'Loading trial #%04d ' %(seq_idx)
+
+    #load motor file (copy first time step)
+    fn_motor = './motor/softmax/target_%04d_softmax.txt' %(seq_idx)
+    tmp_motor = np.genfromtxt(fn_motor,delimiter='\t')    
+    tmp_motor = tmp_motor[:lth,:motor_dim]
+    tmp_motor = np.append([tmp_motor[0]],tmp_motor,axis=0)
+    tmp_motor = np.reshape(tmp_motor,[-1,motor,motor_sm])
+    if i == 0 :
+        motors = np.array([tmp_motor])
+    else:
+        motors = np.append(motors,[tmp_motor],axis=0)
+        
+    #load vision file (copy last time step)
+    fn_vision = './vision/vision_%04d.txt' %(seq_idx)
+    tmp_vision = np.genfromtxt(fn_vision,delimiter='\t')
+    tmp_vision = tmp_vision[:lth,:-1]
+    tmp_vision = np.append(tmp_vision, [tmp_vision[-1]], axis=0)
+    tmp_vision = tmp_vision.reshape([-1,vrow,vcol])
+    if i == 0 :
+        visions = np.array([tmp_vision])
+    else:
+        visions = np.append(visions,[tmp_vision],axis=0)
+
+    idx_data[i] = i
+
+
+
+print visions.shape
+print idx_data.shape
+
+np.savez_compressed(fn_db, motor =motors, vision = visions, idxd = idx_data)
+
+
+
