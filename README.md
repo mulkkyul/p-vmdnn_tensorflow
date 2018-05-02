@@ -250,6 +250,7 @@ After the computation is completed, the program will save and plot the results. 
 
 
 ## References
+If you use this code, please cite the following references.
 - Hwang, J., Kim, J., Ahmadi, A., Choi, M., & Tani, J. (2018). Dealing with Large-Scale Spatio-Temporal Patterns in Imitative Interaction between a Robot and a Human by Using the Predictive Coding Framework. Accepted in the *IEEE Transactions on Systems, Man and Cybernetics: Systems (SMC)*. [[PDF]](https://oist-prod-groups.s3-ap-northeast-1.amazonaws.com/s3fs-public/imce/u103429/HWANG_SMC_revision2_20180109_PDF_clean.pdf)
 - Hwang, J., Kim, J., Ahmadi, A., Choi, M., & Tani, J. (2017). "Predictive Coding-based Deep Dynamic Neural Network for Visuomotor Learning". Presented at the *7th Joint IEEE International Conference of Developmental Learning and Epigenetic Robotics* (ICDL-EpiRob 2017, Lisbon, Portugal) [[arXiv]](https://arxiv.org/abs/1706.02444)
   - Presentation Slides [[Link]](https://mulkkyul.github.io/2017/10/10/cogRobot-icdl2017/)
